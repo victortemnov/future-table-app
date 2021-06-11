@@ -9,12 +9,13 @@ import Search from "./components/Table/Search";
 
 class App extends React.Component {
   state = {
+    isModeSelected: false,
     isLoading: false,
     data: [],
+    search: "",
     sort: "asc",
     sortByField: "id",
     row: null,
-    isModeSelected: false,
     currentPage: 0,
   };
 
@@ -58,11 +59,12 @@ class App extends React.Component {
     if (!search) {
       return data;
     }
-    let result = data.filter((item) => {
+
+    let result = data.filter((person) => {
       return (
-        item["firstName"].toLowerCase().includes(search.toLowerCase()) ||
-        item["lastName"].toLowerCase().includes(search.toLowerCase()) ||
-        item["email"].toLowerCase().includes(search.toLowerCase())
+        person["firstName"].toLowerCase().includes(search.toLowerCase()) ||
+        person["lastName"].toLowerCase().includes(search.toLowerCase()) ||
+        person["email"].toLowerCase().includes(search.toLowerCase())
       );
     });
     if (!result.length) {
@@ -71,16 +73,16 @@ class App extends React.Component {
     return result;
   }
 
-  pageChanger = ({ selected }) => this.setState({ currentPage: selected });
+  pageChanger = ({ selected }) => {
+    this.setState({ currentPage: selected });
+  };
 
-  searchHandler = (search) => console.log(search);
+  searchHandler = (search) => {
+    this.setState({ search, currentPage: 0 });
+  };
 
   render() {
     const pageSize = 50;
-
-    const filteredData = this.getFilteredData();
-
-    const displayData = _.chunk(filteredData, pageSize)[this.state.currentPage];
 
     if (!this.state.isModeSelected) {
       return (
@@ -89,6 +91,10 @@ class App extends React.Component {
         </div>
       );
     }
+
+    const filteredData = this.getFilteredData();
+    const pageCount = Math.ceil(filteredData.length / pageSize);
+    const displayData = _.chunk(filteredData, pageSize)[this.state.currentPage];
 
     return (
       <div className="container">
@@ -113,7 +119,7 @@ class App extends React.Component {
             nextLabel={"next"}
             breakLabel={"..."}
             breakClassName={"break-me"}
-            pageCount={this.state.pageCount}
+            pageCount={pageCount}
             marginPagesDisplayed={2}
             pageRangeDisplayed={5}
             onPageChange={this.pageChanger}

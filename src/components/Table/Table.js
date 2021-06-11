@@ -39,17 +39,17 @@ const Table = (props) => {
         </tr>
       </thead>
       <tbody>
-        {props.data.map((user) => {
+        {props.data.map((person) => {
           return (
             <tr
-              key={user.id + user.phone}
-              onClick={props.selectRow.bind(null, user)}
+              key={person.id + person.phone}
+              onClick={props.selectRow.bind(null, person)}
             >
-              <td>{user.id}</td>
-              <td>{user.firstName}</td>
-              <td>{user.lastName}</td>
-              <td>{user.email}</td>
-              <td>{user.phone}</td>
+              <td>{person.id}</td>
+              <td>{person.firstName}</td>
+              <td>{person.lastName}</td>
+              <td>{person.email}</td>
+              <td>{person.phone}</td>
             </tr>
           );
         })}
