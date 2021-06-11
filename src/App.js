@@ -7,6 +7,8 @@ class App extends React.Component {
   state = {
     isLoading: true,
     data: [],
+    sort: "asc",
+    sortByField: "id",
   };
 
   async componentDidMount() {
