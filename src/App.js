@@ -43,6 +43,13 @@ class App extends React.Component {
   };
 
   render() {
+    if (!this.state.isModeSelected) {
+      return (
+        <div className="container">
+          <ModeSelector />
+        </div>
+      );
+    }
     return (
       <div className="container">
         {this.state.isLoading ? (
