@@ -22,7 +22,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        {this.state.isLoading ? <Loader /> : <Table data={this.state.data} />}
+        {this.state.isLoading ? <Loader /> : 
+        <Table data={this.state.data}
+        onSort={this.onSort}
+         />}
       </div>
     );
   }
