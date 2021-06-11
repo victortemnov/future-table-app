@@ -2,6 +2,7 @@ import React from "react";
 import Loader from "./components/Loader/Loader";
 import Table from "./components/Table/Table";
 import _ from "lodash";
+import MemberDetail from "./components/MemberDetail/MemberDetail";
 
 class App extends React.Component {
   state = {
@@ -54,7 +55,7 @@ class App extends React.Component {
             selectRow={this.selectRow}
           />
         )}
-        {this.state.row ? <DetailRowView person={this.state.row} /> : null}
+        {this.state.row ? <MemberDetail person={this.state.row} /> : null}
       </div>
     );
   }
