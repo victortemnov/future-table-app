@@ -1,6 +1,6 @@
 import React from "react";
 import Loader from "./components/Loader/Loader";
-import Table from "./components/Table";
+import Table from "./components/Table/Table";
 import _ from "lodash";
 
 class App extends React.Component {
@@ -16,9 +16,10 @@ class App extends React.Component {
       `http://www.filltext.com/?rows=32&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}`
     );
     const data = await response.json();
+
     this.setState({
       isLoading: false,
-      data,
+      data: _.orderBy(data, this.state.sortByField, this.state.sort),
     });
   }
 
@@ -40,7 +41,12 @@ class App extends React.Component {
         {this.state.isLoading ? (
           <Loader />
         ) : (
-          <Table data={this.state.data} onSort={this.onSort} />
+          <Table
+            data={this.state.data}
+            onSort={this.onSort}
+            sort={this.state.sort}
+            sortByField={this.state.sortByField}
+          />
         )}
       </div>
     );
