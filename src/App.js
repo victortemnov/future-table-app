@@ -9,6 +9,7 @@ class App extends React.Component {
     data: [],
     sort: "asc",
     sortByField: "id",
+    row: null,
   };
 
   async componentDidMount() {
@@ -33,6 +34,10 @@ class App extends React.Component {
       sort: sortByType,
       sortByField,
     });
+  };
+
+  selectRow = (row) => {
+    this.setState({ row });
   };
 
   render() {
