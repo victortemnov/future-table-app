@@ -77,7 +77,7 @@ class App extends React.Component {
           />
         )}
 
-        {
+        {this.state.data.length > pageSize ? (
           <ReactPaginate
             previousLabel={"previous"}
             nextLabel={"next"}
@@ -88,7 +88,6 @@ class App extends React.Component {
             pageRangeDisplayed={5}
             onPageChange={this.pageChange}
             containerClassName={"pagination"}
-            subContainerClassName={"pages pagination"}
             activeClassName={"active"}
             pageClassName="page-item"
             pageLinkClassName="page-link"
@@ -97,7 +96,7 @@ class App extends React.Component {
             previousLinkClassName="page-link"
             nextLinkClassName="page-link"
           />
-        }
+        ) : null}
 
         {this.state.row ? <MemberDetail person={this.state.row} /> : null}
       </div>
