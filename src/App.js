@@ -20,6 +20,10 @@ class App extends React.Component {
     });
   }
 
+  onSort = (sortByField) => {
+    const cloneData = this.state.data.concat();
+  };
+
   render() {
     return (
       <div className="container">
