@@ -14,13 +14,19 @@ const Table = (props) => {
       </thead>
       <tbody>
         {props.data.map((member) => {
-          return <tr key={member.id + member.phone}>
-            <td>{member.id}</td>
-            <td>{member.firstName}</td>
-            <td>{member.lastName}</td>
-            <td>{member.email}</td>
-            <td>{member.phone}</td>
-          </tr>;
+          return (
+            <tr key={member.id + member.phone}>
+              <td onClick={props.onSort.bind(null, "id")}>{member.id}</td>
+              <td onClick={props.onSort.bind(null, "firstName")}>
+                {member.firstName}
+              </td>
+              <td onClick={props.onSort.bind(null, "lastName")}>
+                {member.lastName}
+              </td>
+              <td onClick={props.onSort.bind(null, "email")}>{member.email}</td>
+              <td onClick={props.onSort.bind(null, "phone")}>{member.phone}</td>
+            </tr>
+          );
         })}
       </tbody>
     </table>
