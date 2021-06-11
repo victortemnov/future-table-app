@@ -46,6 +46,7 @@ class App extends React.Component {
             onSort={this.onSort}
             sort={this.state.sort}
             sortByField={this.state.sortByField}
+            selectRow={this.selectRow}
           />
         )}
       </div>
