@@ -3,6 +3,7 @@ import Loader from "./components/Loader/Loader";
 import Table from "./components/Table/Table";
 import _ from "lodash";
 import MemberDetail from "./components/MemberDetail/MemberDetail";
+import ModeSelector from "./components/ModeSelector/ModeSelector";
 
 class App extends React.Component {
   state = {
@@ -14,10 +15,8 @@ class App extends React.Component {
     isModeSelected: false,
   };
 
-  async componentDidMount() {
-    const response = await fetch(
-      `http://www.filltext.com/?rows=32&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}`
-    );
+  async fetchData(url) {
+    const response = await fetch(url);
     const data = await response.json();
 
     this.setState({
@@ -28,12 +27,12 @@ class App extends React.Component {
 
   onSort = (sortByField) => {
     const cloneData = this.state.data.concat();
-    const sortByType = this.state.sort === "asc" ? "desc" : "asc";
-    const orderedByData = _.orderBy(cloneData, sortByField, sortByType);
+    const sort = this.state.sort === "asc" ? "desc" : "asc";
+    const data = _.orderBy(cloneData, sortByField, sort);
 
     this.setState({
-      data: orderedByData,
-      sort: sortByType,
+      data,
+      sort,
       sortByField,
     });
   };
@@ -42,11 +41,19 @@ class App extends React.Component {
     this.setState({ row });
   };
 
+  modeChanger = (url) => {
+    this.setState({
+      isModeSelected: true,
+      isLoading: true,
+    });
+    this.fetchData(url);
+  };
+
   render() {
     if (!this.state.isModeSelected) {
       return (
         <div className="container">
-          <ModeSelector />
+          <ModeSelector onSelect={this.modeChanger} />
         </div>
       );
     }
