@@ -11,7 +11,7 @@ const ModeSelector = (props) => {
         padding: "300px",
       }}
     >
-      <h3>Сколько контактов отобразить?</h3>
+      <h3 style={{ marginRight: "20px" }}>Сколько контактов отобразить? </h3>
       <button
         style={{ marginRight: "50px", width: "100px" }}
         onClick={() => props.onSelect(smallUrl)}

@@ -1,7 +1,8 @@
 import React from "react";
+import _ from "lodash";
+import ReactPaginate from "react-paginate";
 import Loader from "./components/Loader/Loader";
 import Table from "./components/Table/Table";
-import _ from "lodash";
 import MemberDetail from "./components/MemberDetail/MemberDetail";
 import ModeSelector from "./components/ModeSelector/ModeSelector";
 
@@ -49,7 +50,11 @@ class App extends React.Component {
     this.fetchData(url);
   };
 
+  pageChange = (page) => console.log(page);
+
   render() {
+    const pageSize = 50;
+
     if (!this.state.isModeSelected) {
       return (
         <div className="container">
@@ -57,6 +62,7 @@ class App extends React.Component {
         </div>
       );
     }
+
     return (
       <div className="container">
         {this.state.isLoading ? (
@@ -70,6 +76,29 @@ class App extends React.Component {
             selectRow={this.selectRow}
           />
         )}
+
+        {
+          <ReactPaginate
+            previousLabel={"previous"}
+            nextLabel={"next"}
+            breakLabel={"..."}
+            breakClassName={"break-me"}
+            pageCount={this.state.pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={this.pageChange}
+            containerClassName={"pagination"}
+            subContainerClassName={"pages pagination"}
+            activeClassName={"active"}
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            previousClassName="page-item"
+            nextClassName="page-item"
+            previousLinkClassName="page-link"
+            nextLinkClassName="page-link"
+          />
+        }
+
         {this.state.row ? <MemberDetail person={this.state.row} /> : null}
       </div>
     );
