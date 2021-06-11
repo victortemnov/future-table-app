@@ -54,6 +54,7 @@ class App extends React.Component {
             selectRow={this.selectRow}
           />
         )}
+        {this.state.row ? <DetailRowView person={this.state.row} /> : null}
       </div>
     );
   }
