@@ -1,4 +1,5 @@
 import React from "react";
+import Loader from "./components/Loader/Loader";
 
 class App extends React.Component {
   async componentDidMount() {
@@ -9,7 +10,11 @@ class App extends React.Component {
   }
 
   render() {
-    return <div className="container">table</div>;
+    return (
+      <div className="container">
+        <Loader />
+      </div>
+    );
   }
 }
 
