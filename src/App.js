@@ -5,6 +5,7 @@ import Loader from "./components/Loader/Loader";
 import Table from "./components/Table/Table";
 import MemberDetail from "./components/MemberDetail/MemberDetail";
 import ModeSelector from "./components/ModeSelector/ModeSelector";
+import Search from "./components/Table/Search";
 
 class App extends React.Component {
   state = {
@@ -72,6 +73,8 @@ class App extends React.Component {
 
   pageChanger = ({ selected }) => this.setState({ currentPage: selected });
 
+  searchHandler = (search) => console.log(search);
+
   render() {
     const pageSize = 50;
 
@@ -92,13 +95,16 @@ class App extends React.Component {
         {this.state.isLoading ? (
           <Loader />
         ) : (
-          <Table
-            data={displayData}
-            onSort={this.onSort}
-            sort={this.state.sort}
-            sortByField={this.state.sortByField}
-            selectRow={this.selectRow}
-          />
+          <React.Fragment>
+            <Search onSearch={this.searchHandler} />
+            <Table
+              data={displayData}
+              onSort={this.onSort}
+              sort={this.state.sort}
+              sortByField={this.state.sortByField}
+              selectRow={this.selectRow}
+            />
+          </React.Fragment>
         )}
 
         {this.state.data.length > pageSize ? (
