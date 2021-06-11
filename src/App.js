@@ -24,6 +24,14 @@ class App extends React.Component {
 
   onSort = (sortByField) => {
     const cloneData = this.state.data.concat();
+    const sortByType = this.state.sort === "asc" ? "desc" : "asc";
+    const orderedByData = _.orderBy(cloneData, sortByField, sortByType);
+
+    this.setState({
+      data: orderedByData,
+      sort: sortByType,
+      sortByField,
+    });
   };
 
   render() {
