@@ -14,6 +14,7 @@ class App extends React.Component {
     sortByField: "id",
     row: null,
     isModeSelected: false,
+    currentPage: 0,
   };
 
   async fetchData(url) {
@@ -50,10 +51,33 @@ class App extends React.Component {
     this.fetchData(url);
   };
 
-  pageChange = (page) => console.log(page);
+  getFilteredData() {
+    const { data, search } = this.state;
+
+    if (!search) {
+      return data;
+    }
+    let result = data.filter((item) => {
+      return (
+        item["firstName"].toLowerCase().includes(search.toLowerCase()) ||
+        item["lastName"].toLowerCase().includes(search.toLowerCase()) ||
+        item["email"].toLowerCase().includes(search.toLowerCase())
+      );
+    });
+    if (!result.length) {
+      result = this.state.data;
+    }
+    return result;
+  }
+
+  pageChanger = ({ selected }) => this.setState({ currentPage: selected });
 
   render() {
     const pageSize = 50;
+
+    const filteredData = this.getFilteredData();
+
+    const displayData = _.chunk(filteredData, pageSize)[this.state.currentPage];
 
     if (!this.state.isModeSelected) {
       return (
@@ -69,7 +93,7 @@ class App extends React.Component {
           <Loader />
         ) : (
           <Table
-            data={this.state.data}
+            data={displayData}
             onSort={this.onSort}
             sort={this.state.sort}
             sortByField={this.state.sortByField}
@@ -86,7 +110,7 @@ class App extends React.Component {
             pageCount={this.state.pageCount}
             marginPagesDisplayed={2}
             pageRangeDisplayed={5}
-            onPageChange={this.pageChange}
+            onPageChange={this.pageChanger}
             containerClassName={"pagination"}
             activeClassName={"active"}
             pageClassName="page-item"
@@ -95,6 +119,7 @@ class App extends React.Component {
             nextClassName="page-item"
             previousLinkClassName="page-link"
             nextLinkClassName="page-link"
+            forcePage={this.state.currentPage}
           />
         ) : null}
 
