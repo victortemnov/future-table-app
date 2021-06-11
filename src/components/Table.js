@@ -2,7 +2,7 @@ import React from "react";
 
 const Table = (props) => {
   return (
-    <table className="table">
+    <table className="table table-dark table-striped">
       <thead>
         <tr>
           <th>ID</th>
@@ -14,7 +14,7 @@ const Table = (props) => {
       </thead>
       <tbody>
         {props.data.map((member) => {
-          <tr key={member.id}>
+          return <tr key={member.id + member.phone}>
             <td>{member.id}</td>
             <td>{member.firstName}</td>
             <td>{member.lastName}</td>
