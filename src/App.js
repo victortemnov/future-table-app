@@ -6,11 +6,12 @@ import MemberDetail from "./components/MemberDetail/MemberDetail";
 
 class App extends React.Component {
   state = {
-    isLoading: true,
+    isLoading: false,
     data: [],
     sort: "asc",
     sortByField: "id",
     row: null,
+    isModeSelected: false,
   };
 
   async componentDidMount() {
