@@ -1,4 +1,5 @@
 import React from "react";
+import SortDirection from "./SortDirection";
 
 const Table = (props) => {
   return (
@@ -6,23 +7,34 @@ const Table = (props) => {
       <thead>
         <tr>
           <th onClick={props.onSort.bind(null, "id")}>
-            ID {props.sortByField === "id" ? <small>{props.sort}</small> : null}
+            ID{" "}
+            {props.sortByField === "id" ? (
+              <SortDirection iconDirection={props.sort} />
+            ) : null}
           </th>
           <th onClick={props.onSort.bind(null, "firstName")}>
             First name{" "}
-            {props.sortByField === "id" ? <small>{props.sort}</small> : null}
+            {props.sortByField === "firstName" ? (
+              <SortDirection iconDirection={props.sort} />
+            ) : null}
           </th>
           <th onClick={props.onSort.bind(null, "lastName")}>
             Last name{" "}
-            {props.sortByField === "id" ? <small>{props.sort}</small> : null}
+            {props.sortByField === "lastName" ? (
+              <SortDirection iconDirection={props.sort} />
+            ) : null}
           </th>
           <th onClick={props.onSort.bind(null, "email")}>
             Email{" "}
-            {props.sortByField === "id" ? <small>{props.sort}</small> : null}
+            {props.sortByField === "email" ? (
+              <SortDirection iconDirection={props.sort} />
+            ) : null}
           </th>
           <th onClick={props.onSort.bind(null, "phone")}>
             Phone{" "}
-            {props.sortByField === "id" ? <small>{props.sort}</small> : null}
+            {props.sortByField === "phone" ? (
+              <SortDirection iconDirection={props.sort} />
+            ) : null}
           </th>
         </tr>
       </thead>
