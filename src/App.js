@@ -1,5 +1,6 @@
 import React from "react";
 import Loader from "./components/Loader/Loader";
+import Table from "./components/Table";
 
 class App extends React.Component {
   async componentDidMount() {
