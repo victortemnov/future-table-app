@@ -1,14 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const MemberDetail = ({ person }) => {
-  // const [desc, setDesc] = useState(0);
-
-  // useEffect(() => {
-  //   person.description = `${desc}`;
-  // });
-
   return (
-    // <textarea onChange={() => setDesc(desc)}>{person.description}
     <div>
       <p>
         Выбран пользователь <b>{`${person.firstName} ${person.lastName}`}</b>
