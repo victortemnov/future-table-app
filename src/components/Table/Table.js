@@ -27,14 +27,17 @@ const Table = (props) => {
         </tr>
       </thead>
       <tbody>
-        {props.data.map((member) => {
+        {props.data.map((user) => {
           return (
-            <tr key={member.id + member.phone}>
-              <td>{member.id}</td>
-              <td>{member.firstName}</td>
-              <td>{member.lastName}</td>
-              <td>{member.email}</td>
-              <td>{member.phone}</td>
+            <tr
+              key={user.id + user.phone}
+              onClick={props.selectRow.bind(null, user)}
+            >
+              <td>{user.id}</td>
+              <td>{user.firstName}</td>
+              <td>{user.lastName}</td>
+              <td>{user.email}</td>
+              <td>{user.phone}</td>
             </tr>
           );
         })}
