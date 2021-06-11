@@ -1,6 +1,7 @@
 import React from "react";
 import Loader from "./components/Loader/Loader";
 import Table from "./components/Table";
+import _ from "lodash";
 
 class App extends React.Component {
   state = {
@@ -22,10 +23,11 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        {this.state.isLoading ? <Loader /> : 
-        <Table data={this.state.data}
-        onSort={this.onSort}
-         />}
+        {this.state.isLoading ? (
+          <Loader />
+        ) : (
+          <Table data={this.state.data} onSort={this.onSort} />
+        )}
       </div>
     );
   }
