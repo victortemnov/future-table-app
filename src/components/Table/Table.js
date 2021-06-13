@@ -42,7 +42,7 @@ const Table = (props) => {
         {props.data.map((person) => {
           return (
             <tr
-              key={person.id + person.phone}
+              key={person.id + person.phone + Math.random()}
               onClick={props.selectRow.bind(null, person)}
             >
               <td>{person.id}</td>
