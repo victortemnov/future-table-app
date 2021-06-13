@@ -6,6 +6,7 @@ import Table from "./components/Table/Table";
 import MemberDetail from "./components/MemberDetail/MemberDetail";
 import ModeSelector from "./components/ModeSelector/ModeSelector";
 import Search from "./components/Table/Search";
+import AddNewUser from "./components/Table/AddNewUser";
 
 class App extends React.Component {
   state = {
@@ -81,6 +82,12 @@ class App extends React.Component {
     this.setState({ search, currentPage: 0 });
   };
 
+  createUser = (user) => {
+    const copyData = [...this.state.data];
+    copyData.unshift(user);
+    this.setState({ data: copyData });
+  };
+
   render() {
     const pageSize = 50;
 
@@ -103,6 +110,7 @@ class App extends React.Component {
         ) : (
           <React.Fragment>
             <Search onSearch={this.searchHandler} />
+            <AddNewUser createUser={this.createUser} />
             <Table
               data={displayData}
               onSort={this.onSort}
