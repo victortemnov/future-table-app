@@ -7,10 +7,11 @@ const Search = (props) => {
   };
 
   return (
-    <div className="input-group mb-3 mt-3">
+    <div className="input-group mb-3 mt-1">
       <div className="input-group-prepend">
         <button
-          className="btn btn-outline-secondary"
+          style={{ marginRight: "10px" }}
+          className="btn btn-warning"
           onClick={() => props.onSearch(value)}
         >
           Search
